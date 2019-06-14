@@ -19,7 +19,7 @@ EndChapter=1315  #So chuong Ket thuc
 x=StartChapter
 
 strURLStory='Đường-dẫn-đến-chương-truyện'
-#Sample: strURLStory='https:#truyencv.com/pokemon-he-thong-thanh-tuu-dai-su/chuong-'
+#Sample: strURLStory='https://truyencv.com/pokemon-he-thong-thanh-tuu-dai-su/chuong-'
 
 filenameTXT ="Ketqua.txt" 
 
