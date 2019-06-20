@@ -20,28 +20,33 @@ x=StartChapter
 filenameTXT ="Ketqua.txt"
  
 while (x<= EndChapter):
-  StrippedContent=""
-  ChapterURL=strURLStory+str(x)+'/'    
-  scraper = cfscrape.CloudflareScraper()
-  response=scraper.get(ChapterURL)
-  filenameHTML =str(x)+".html"  
-  
-  open(filenameHTML, 'wb').write(response.content)
-  with open(filenameHTML, encoding="utf-8") as fp:
-    soup = BeautifulSoup(fp,"lxml")
-    #Luu tieu de  
-    StrippedContent='C'+str(x).zfill(4)+' - '+ soup.title.string+'\n'
-    div= soup.find(id="js-truyencv-content")             
-      
-    #Loai bo tag br
-    for elem in div.find_all("br"):
-      elem.replace_with(elem.text + "\n")
-      
-    #Luu Noi dung chuong
-    StrippedContent=StrippedContent+'\n'+div.text
-    
-  with open(filenameTXT, 'a', encoding="utf-8") as handle:    
-    handle.write(StrippedContent)
+    StrippedContent=""
+    ChapterURL=strURLStory+str(x)+'/'    
+    scraper = cfscrape.CloudflareScraper()
+    response=scraper.get(ChapterURL)
+    filenameHTML =str(x)+".html"  
+    bCheckLink=0
+    open(filenameHTML, 'wb').write(response.content)
+    with open(filenameHTML, encoding="utf-8") as fp:
+        soup = BeautifulSoup(fp,"lxml")
+        try:        
+            #Luu tieu de  
+            StrippedContent='C'+str(x).zfill(4)+' - '+ soup.title.string+'\n'
+            div= soup.find(id="js-truyencv-content")             
+              
+            #Loai bo tag br
+            for elem in div.find_all("br"):
+              elem.replace_with(elem.text + "\n")
+              
+            #Luu Noi dung chuong
+            StrippedContent=StrippedContent+'\n'+div.text
+            bCheckLink=1
+        except:
+            print('Khong ton tai Chuong: '+str(x))
+            bCheckLink=0
+    if bCheckLink==1:  
+        with open(filenameTXT, 'a', encoding="utf-8") as handle:    
+            handle.write(StrippedContent)
   print('Đã tai ('+str(x)+'/'+str(EndChapter)+')' )    
   x+=1        
   os.remove(filenameHTML)   
