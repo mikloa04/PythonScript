@@ -31,7 +31,7 @@ while (x<= EndChapter):
         soup = BeautifulSoup(fp,"lxml")
         try:        
             #Luu tieu de  
-            StrippedContent='C'+str(x).zfill(4)+' - '+ soup.title.string+'\n'
+            StrippedContent='\n'+'C'+str(x).zfill(4)+' - '+ soup.title.string+'\n'
             div= soup.find(id="js-truyencv-content")             
               
             #Loai bo tag br
