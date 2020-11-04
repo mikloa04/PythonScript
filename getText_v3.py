@@ -1,6 +1,6 @@
-#Script để tải truyện từ Truyencv
+#Script để tải truyện từ metruyenchu
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 2.0
+#Version: 3.0
 #Bỏ qua DDOS protection
 #Dung module cfscrape, cai dat bang cau lenh: pip install cfscrape
 
