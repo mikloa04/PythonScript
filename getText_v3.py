@@ -12,17 +12,10 @@ import time
 import os
 import array as arr
 
-#https://truyencv.com/tai-conan-ben-trong-chon-lam-ke-doi-bai/chuong- 983
-#https://truyencv.com/mang-theo-hokage-trong-sinh-nhat-ban-tokyo/chuong- 782
-#'https://truyencv.com/dai-tham-tu-mori-kogoro/chuong-' 2075  
-#https://metruyenchu.com/truyen/chan-nuoi-toan-nhan-loai/chuong-1303
-#https://truyencv.com/tenseigan-trong-the-gioi-naruto/chuong-979
-# https://metruyenchu.com/truyen/van-co-de-nhat-con-re/chuong-772
-
 #Duong dan den chuong truyen
 strURLStory='https://metruyenchu.com/truyen/van-co-de-nhat-con-re/chuong-'
 StartChapter=1 #So chuong bat dau
-EndChapter=772 #So chuong ket thuc
+EndChapter=100 #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua.txt"
 
