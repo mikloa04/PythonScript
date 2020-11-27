@@ -1,8 +1,5 @@
 #Script để tải truyện từ wikidich
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 2.0
-#Bỏ qua DDOS protection
-#Dung module cfscrape, cai dat bang cau lenh: pip install cfscrape
 
 from bs4 import BeautifulSoup
 import cfscrape
@@ -13,7 +10,7 @@ import os
 import array as arr
 
 
-LinkFile = "link.txt"
+LinkFile = "link.txt" #file chua link tap hop chuong truyen
 filenameTXT ="Ketqua.txt"
 chapter = 0
 f = open(LinkFile, "r")
