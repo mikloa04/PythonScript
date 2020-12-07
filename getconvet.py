@@ -32,7 +32,7 @@ for x in f:
                 StrippedContent="\n"+ downloaded+"\n"                
                 
                 #Lay noi dung chuong
-                div= soup.find(id="wp-manga-current-chap")             
+                div= soup.find('div', class_='reading-content')               
                 for elem in div.find_all("p"):
                     elem.replace_with(elem.text + "\n\n") 
                 _text = div.text
