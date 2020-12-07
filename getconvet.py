@@ -1,7 +1,5 @@
-#Script để tải truyện từ wikidich
+#Script để tải truyện từ truyenconvet
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 2.0
-#Bỏ qua DDOS protection
 #Dung module cfscrape, cai dat bang cau lenh: pip install cfscrape
 
 from bs4 import BeautifulSoup
