@@ -16,11 +16,11 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory='https://tuoinung.com/2022/05/truyen-sex-hiep-dam-me-ruot.html/'
+strURLStory='https://truyendam.org/ten-truyen/'
 StartChapter=1 #So chuong bat dau
-EndChapter=31 #So chuong ket thuc
+EndChapter=N #So chuong ket thuc
 x=StartChapter    
-filenameTXT ="LL-hiep-dam-me-ruot.txt"
+filenameTXT ="Ketqua.txt"
 
 while (x<= EndChapter):
     StrippedContent=""
