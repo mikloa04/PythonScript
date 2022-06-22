@@ -12,10 +12,10 @@ import time
 import os
 
 #Duong dan den chuong truyen
-strURLStory='https://truyencv.com/cuu-tien-do/chuong-'  
+strURLStory='https://truyencv.com/ten-truyen/chuong-'  
 
 StartChapter=1 #So chuong bat dau
-EndChapter=2868 #So chuong ket thuc
+EndChapter=n #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua.txt"
  
