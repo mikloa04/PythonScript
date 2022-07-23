@@ -1,5 +1,5 @@
-﻿#Script để tải truyện từ Truyencv
-#Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
+﻿#Script để tải truyện từ lightnovelpub.com
+#Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua_lnp.txt
 #Version: 2.0
 #Bỏ qua DDOS protection
 #Dung module cloudscraper, pip install cloudscraper, pip install cloudscraper -U
@@ -15,9 +15,9 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory = 'https://www.lightnovelpub.com/novel/i-was-caught-up-in-a-hero-summoning-12032016/784-chapter-'
-StartChapter = 821 #So chuong bat dau
-EndChapter = 1209 #So chuong ket thuc
+strURLStory = 'https://www.lightnovelpub.com/novel/name/chapter-'
+StartChapter = 1 #So chuong bat dau
+EndChapter = 200 #So chuong ket thuc
 x = StartChapter    
 filenameTXT  = "Ketqua_lnp.txt"
 
