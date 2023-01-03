@@ -15,9 +15,9 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory='https://metruyencv.com/truyen/uc-nguoi-group-chat/chuong-'
-StartChapter=494 #So chuong bat dau
-EndChapter=515 #So chuong ket thuc
+strURLStory='https://metruyencv.com/truyen/[ten-truyen]/chuong-'
+StartChapter=0 #So chuong bat dau
+EndChapter=999 #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua_mtc.txt"
 
