@@ -1,7 +1,7 @@
 #Script để tải truyện từ truyen35
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua_truyen35.txt
 #Version: 1.0.1
-#Dung module selenium , pip install selenium , pip install selenium  -U
+#Dung module cloudscraper, pip install cloudscraper, pip install cloudscraper -U
 #pip install lxml
 #pip install bs4
 
