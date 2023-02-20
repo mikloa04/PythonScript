@@ -54,8 +54,8 @@ while (x<= EndChapter):
     if bCheckLink==1:  
         with open(filenameTXT, 'a', encoding="utf-8") as handle:    
             handle.write(StrippedContent)
-        if(os.path.exists(filenameHTML)):
-            os.remove(filenameHTML)
+    if(os.path.exists(filenameHTML)):
+        os.remove(filenameHTML)
     print('Da tai ('+str(x)+'/'+str(EndChapter)+')' )    
     x+=1             
     #Tam dung mot chut    
