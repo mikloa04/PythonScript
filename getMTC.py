@@ -50,7 +50,8 @@ while (x<= EndChapter):
         bCheckLink=0
 
     if bCheckLink==1:
-        os.remove(filenameHTML)
+        if(os.path.exists(filenameHTML)):
+            os.remove(filenameHTML)
     print('Da tai ('+str(x)+'/'+str(EndChapter)+')' )    
     x+=1             
 
