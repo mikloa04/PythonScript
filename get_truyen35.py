@@ -19,6 +19,7 @@ StartChapter=X #So chuong bat dau
 EndChapter=Y #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua_truyen35.txt"
+filelog ="log_truyen35.txt"
 
 while (x<= EndChapter):
     StrippedContent=""
@@ -47,19 +48,21 @@ while (x<= EndChapter):
             #Luu Noi dung chuong
             StrippedContent="\n"+StrippedContent+"\n"+div.text+"\n"
             bCheckLink=1
-            
         except:
-            print('Khong ton tai Chuong: '+str(x))
             bCheckLink=0
     if bCheckLink==1:  
         with open(filenameTXT, 'a', encoding="utf-8") as handle:    
             handle.write(StrippedContent)
+    else:
+        StrippedContent = 'Error download '+ChapterURL+'\n'
+        with open(filelog, 'a', encoding="utf-8") as handle:    
+            handle.write(StrippedContent)
     if(os.path.exists(filenameHTML)):
-        os.remove(filenameHTML)
-    print('Da tai ('+str(x)+'/'+str(EndChapter)+')' )    
+            os.remove(filenameHTML)
+    print('Downloaded: ('+str(x)+'/'+str(EndChapter)+')' )    
     x+=1             
     #Tam dung mot chut    
     SleepTime=random.randint(10, 15)
     time.sleep(SleepTime)
 
-print('Hoan tat!')
+print('Finished!')
