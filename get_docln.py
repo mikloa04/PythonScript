@@ -1,6 +1,6 @@
-﻿#Script để tải truyện từ docln
+#Script để tải truyện từ docln
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua_docln.txt
-#Version: 2.0
+#Version: 2.0.1
 #Bỏ qua DDOS protection
 #Dung module cloudscraper, pip install cloudscraper, pip install cloudscraper -U
 
@@ -17,6 +17,7 @@ import array as arr
 
 LinkFile = "link_docln.txt"
 filenameTXT ="Ketqua_docln.txt"
+filelog ="log_docln.txt"
 chapter = 0
 f = open(LinkFile, "r")
 #init Chrome webdriver --headless -disable logging
@@ -63,11 +64,14 @@ for x in f:
         if bCheckLink==1:  
             with open(filenameTXT, 'a', encoding="utf-8") as handle:    
                 handle.write(StrippedContent)
+        else:
+            StrippedContent = 'Error download '+ChapterURL+'\n'
+            with open(filelog, 'a', encoding="utf-8") as handle:    
+                handle.write(StrippedContent)
         if(os.path.exists(filenameHTML)):
             os.remove(filenameHTML)
-        else:
-            print('Khong ton tai Chuong: '+str(x))
-        print('Da tai ('+downloaded+')' )    
+        
+        print('Downloaded ('+downloaded+')' )    
         chapter+=1             
         #Tam dung mot chut    
         SleepTime=random.randint(10, 15)
@@ -75,4 +79,4 @@ for x in f:
 driver.quit()
 f.close()
 
-print('Hoan tat!')
+print('Finished!')
