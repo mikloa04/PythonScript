@@ -1,6 +1,6 @@
 #Script để tải truyện từ truyen35
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua_truyen35.txt
-#Version: 1.0.1
+#Version: 1.1
 #Dung module cloudscraper, pip install cloudscraper, pip install cloudscraper -U
 #pip install lxml
 #pip install bs4
@@ -20,8 +20,9 @@ EndChapter=Y #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua_truyen35.txt"
 filelog ="log_truyen35.txt"
-
+retry = 0
 while (x<= EndChapter):
+    
     StrippedContent=""
     ChapterURL=strURLStory+str(x)+'/'    
     scraper = cloudscraper.create_scraper(browser={'browser': 'firefox','platform': 'windows','mobile': False})
@@ -50,17 +51,27 @@ while (x<= EndChapter):
             bCheckLink=1
         except:
             bCheckLink=0
+    
     if bCheckLink==1:  
         with open(filenameTXT, 'a', encoding="utf-8") as handle:    
             handle.write(StrippedContent)
+        print('Downloaded: ('+str(x)+'/'+str(EndChapter)+')' )
+        x+=1
+        retry = 0
     else:
-        StrippedContent = 'Error download '+ChapterURL+'\n'
-        with open(filelog, 'a', encoding="utf-8") as handle:    
-            handle.write(StrippedContent)
+        retry += 1
+        if (retry == 4):
+            StrippedContent = 'Error download '+ChapterURL+'\n'
+            with open(filelog, 'a', encoding="utf-8") as handle:    
+                handle.write(StrippedContent)
+            x+=1
+            retry = 0
+            print('Error Downloaded: ('+str(x)+')' )
+
     if(os.path.exists(filenameHTML)):
-            os.remove(filenameHTML)
-    print('Downloaded: ('+str(x)+'/'+str(EndChapter)+')' )    
-    x+=1             
+        os.remove(filenameHTML)
+    
+                 
     #Tam dung mot chut    
     SleepTime=random.randint(10, 15)
     time.sleep(SleepTime)
