@@ -1,5 +1,5 @@
 ﻿#Script extract text from all file xhtml in current folder
-#Version: 1.0.1
+#Version: 1.0.2
 
 
 from bs4 import BeautifulSoup
@@ -10,7 +10,7 @@ import array as arr
 
 files = [f for f in os.listdir('.') if os.path.isfile(f)]
 for f in files:
-    if f.endswith('.xhtml'):
+    if os.path.exists(f) and f.endswith('.xhtml'):
         StrippedContent = ""
         filename = f[0:len(f)-len('.xhtml')]
         filenameTXT = filename+".txt"              
