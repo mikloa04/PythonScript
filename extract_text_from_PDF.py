@@ -1,3 +1,6 @@
+#Script extract lấy text từ file pdf, ghi vào file Ketqua_pdf.txt
+#Version: 1.1
+#pip install PyMuPDF
 
 
 import fitz
@@ -5,31 +8,26 @@ import fileinput
 import os
 import array as arr
 
-#Duong dan den chuong truyen
-
-StartChapter=a #So chuong bat dau
-EndChapter=z #So chuong ket thuc
-x=StartChapter    
 filenameTXT ="Ketqua_pdf.txt"
 
-while (x<= EndChapter):
-    StrippedContent=""    
-    filenameHTML =str(x)+".pdf"      
-    try:    
-
-        #Lấy text từ file pdf và lưu lại
-        if(os.path.exists(filenameHTML)):
-            doc = fitz.open(filenameHTML)
+files = [f for f in os.listdir('.') if os.path.isfile(f)]
+for f in files:
+    if os.path.exists(f) and f.endswith('.pdf'):
+        StrippedContent = ""          
+        try:    
+            #extract text from file pdf
+            doc = fitz.open(f)
             for page in doc:
                 text = page.get_text()            
                 StrippedContent = StrippedContent +"\n" + text
             doc.close()
+            #save to text file
             with open(filenameTXT, 'a', encoding="utf-8") as handle:    
                 handle.write(StrippedContent)
-            os.remove(filenameHTML)
-    except:
-        print('Khong ton tai Chuong: '+str(x))
-    print('Da tai ('+str(x)+'/'+str(EndChapter)+')' )    
-    x+=1
+            #delete pdf file
+            os.remove(f)
+            print('Complete file: '+f)
+        except:
+            print('Error convert file: '+ f)
 
-print('Hoan tat!')
+print('Finished!')
