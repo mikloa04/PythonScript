@@ -21,9 +21,9 @@ EndChapter=y #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="Ketqua_ttv.txt"
 filelog ="log_ttv.txt"
-
+retry = 0
 while (x<= EndChapter):
-    result_test = ""
+    
     StrippedContent=""
     ChapterURL=strURLStory+str(x)+'/'    
     scraper = cloudscraper.create_scraper(browser={'browser': 'firefox','platform': 'windows','mobile': False})
@@ -33,38 +33,46 @@ while (x<= EndChapter):
     open(filenameHTML, 'wb').write(response.content)
     with open(filenameHTML, encoding="utf-8") as fp:
         soup = BeautifulSoup(fp,"lxml")
-        try:        
-            #Lay tieu de chuong
-            for each_div in soup.findAll('a',{'class':'more-chap'}):
-                StrippedContent="\n"+StrippedContent+"\n"+each_div.text+"\n"
-                
-            #Lay noi dung chuong
-            for each_div in soup.findAll('div',{'class':'box-chap'}):
-                StrippedContent="\n"+StrippedContent+"\n"+each_div.text+"\n"                       
-              
-            bCheckLink=1
+        try:
+            #Luu tieu de
+            StrippedContent = ""
+            for title in soup.find_all('title'):
+                downloaded  =   title.get_text()
+                break
+            StrippedContent = "\n"+ downloaded
             
+            #Lay noi dung chuong
+            div= soup.find(id="js-truyenkk-read-content")             
+            #Loai bo tag br
+            for elem in div.find_all("br"):
+                elem.replace_with(elem.text + "\n")
+              
+            #Luu Noi dung chuong
+            StrippedContent="\n"+StrippedContent+"\n"+div.text+"\n"
+            bCheckLink=1
         except:
-            print('Khong ton tai Chuong: '+str(x))
             bCheckLink=0
+    
     if bCheckLink==1:  
-        #Luu Noi dung chuong
         with open(filenameTXT, 'a', encoding="utf-8") as handle:    
             handle.write(StrippedContent)
-        result_test = 'Downloaded: ('
+        print('Downloaded: ('+str(x)+'/'+str(EndChapter)+')' )
+        x+=1
+        retry = 0
     else:
-        StrippedContent = 'Error download '+ChapterURL+'\n'
-        result_test = 'Error download: ('
-        with open(filelog, 'a', encoding="utf-8") as handle:    
-            handle.write(StrippedContent)
-        
-        
+        retry += 1
+        if (retry == 4):
+            StrippedContent = 'Error download '+ChapterURL+'\n'
+            with open(filelog, 'a', encoding="utf-8") as handle:    
+                handle.write(StrippedContent)
+            x+=1
+            retry = 0
+            print('Error Downloaded: ('+str(x)+')' )
+
     if(os.path.exists(filenameHTML)):
         os.remove(filenameHTML)
-        result_test = result_test + str(x)+'/'+str(EndChapter)+')'
-        print(result_test)
     
-    x+=1             
+                 
     #Tam dung mot chut    
     SleepTime=random.randint(10, 15)
     time.sleep(SleepTime)
