@@ -64,9 +64,9 @@ while (x<= EndChapter):
             StrippedContent = 'Error download '+ChapterURL+'\n'
             with open(filelog, 'a', encoding="utf-8") as handle:    
                 handle.write(StrippedContent)
+            print('Error Downloaded: ('+str(x)+')' )
             x+=1
             retry = 0
-            print('Error Downloaded: ('+str(x)+')' )
 
     if(os.path.exists(filenameHTML)):
         os.remove(filenameHTML)
