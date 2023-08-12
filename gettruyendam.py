@@ -29,16 +29,18 @@ while (x<= EndChapter):
     response=scraper.get(ChapterURL)
     filenameHTML =str(x)+".html"  
     bCheckLink=0
+    StrippedContent=""
     open(filenameHTML, 'wb').write(response.content)
     with open(filenameHTML, encoding="utf-8") as fp:
         soup = BeautifulSoup(fp,"lxml")
         try:                   
-            StrippedContent="\n"           
-            #Lay noi dung chuong
+            #Extract Title               
+            if x == StartChapter :
+                downloaded = soup.title.string
+                StrippedContent = downloaded +"\n"
+            #Extract content
             for data in soup.find_all("p"):
-                StrippedContent = StrippedContent + "\n" + data.get_text() + "\n"
-              
-            #Luu Noi dung chuong
+                StrippedContent = StrippedContent + "\n" + data.get_text() + "\n"                        
             bCheckLink=1
             
         except:
@@ -48,10 +50,10 @@ while (x<= EndChapter):
         with open(filenameTXT, 'a', encoding="utf-8") as handle:    
             handle.write(StrippedContent)
         os.remove(filenameHTML)     
-    print('Da tai ('+str(x)+'/'+str(EndChapter)+')' )    
+    print('Downloaded ('+str(x)+'/'+str(EndChapter)+')' )    
     x+=1             
     #Tam dung mot chut    
     SleepTime=random.randint(1, 3)
     time.sleep(SleepTime)
 
-print('Hoan tat!')
+print('Finished!')
