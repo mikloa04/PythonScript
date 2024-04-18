@@ -1,8 +1,8 @@
 #Script để tải truyện từ uuks
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua_uuks.txt
-#Version: 1.0.0
+#Version: 1.0.1
 #Bỏ qua DDOS protection
-#Dung module cloudscraper, pip install cloudscraper, pip install cloudscraper -U
+#Dung module selenium
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -16,7 +16,7 @@ import os
 import array as arr
 
 LinkFile = "link_uuks.txt"
-filenameTXT ="Ketqua_uuks.txt"
+filenameTXT ="ta-dong-kinh-quai-dam.txt"
 filelog ="log_uuks.txt"
 chapter = 0
 f = open(LinkFile, "r")
@@ -24,6 +24,7 @@ f = open(LinkFile, "r")
 options = webdriver.ChromeOptions()
 options.add_argument("headless")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_argument('log-level=3')
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 driver.implicitly_wait(0.5)
 retry = 0
