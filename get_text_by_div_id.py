@@ -1,6 +1,6 @@
 #Script để tải truyện từ các website truyen
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 1.0.0
+#Version: 1.0.2
 #Dung module selenium, pip install selenium, pip install selenium -U
 
 from bs4 import BeautifulSoup
@@ -35,8 +35,8 @@ source_dict = {
     
 }
 #change key to set id value
-_key = 'wiki'
-_val = source_dict[_key]
+_key = ''
+_val = ''
 f = open(LinkFile, "r")
 #init Chrome webdriver --headless -disable logging
 options = webdriver.ChromeOptions()
@@ -51,8 +51,17 @@ for x in f:
         bCheckLink=0
         StrippedContent=""
         downloaded=""
-        ChapterURL=x
-        filenameHTML =str(chapter)+".html"         
+        ChapterURL= x
+        filenameHTML = str(chapter)+".html"
+        if _key == '':
+            for key in source_dict.keys():
+                if key in ChapterURL:
+                    _key = key
+                    _val = source_dict[_key]
+                    break
+            if _key == '' and _val == '':
+                print('This host is not supported yet!')
+                break
         try:    
             #Get content from url, save as html file
             driver.get(ChapterURL)
@@ -71,7 +80,7 @@ for x in f:
                     #Lay noi dung chuong
                     div= soup.find(id=_val)             
                     for elem in div.find_all("p"):
-                        elem.replace_with(elem.text + "\n") 
+                        elem.replace_with(elem.text + "\n\n") 
                     _text = div.text
                     #Luu Noi dung chuong
                     StrippedContent="\n"+StrippedContent+"\n"+_text+"\n"
