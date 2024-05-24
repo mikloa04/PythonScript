@@ -25,8 +25,8 @@ source_dict = {
     
 }
 #change key to set class value
-_key = 'ttv'
-_val = source_dict[_key]
+_key = ''
+_val = ''
 f = open(LinkFile, "r")
 #init Chrome webdriver --headless -disable logging
 options = webdriver.ChromeOptions()
@@ -42,7 +42,16 @@ for x in f:
         StrippedContent=""
         downloaded=""
         ChapterURL=x
-        filenameHTML =str(chapter)+".html"         
+        filenameHTML =str(chapter)+".html"
+        if _key == '':
+            for key in source_dict.keys():
+                if key in ChapterURL:
+                    _key = key
+                    _val = source_dict[_key]
+                    break
+            if _key == '' and _val == '':
+                print('This host is not supported yet!')
+                break
         try:    
             #Get content from url, save as html file
             driver.get(ChapterURL)
