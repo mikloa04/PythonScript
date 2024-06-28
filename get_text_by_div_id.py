@@ -31,7 +31,9 @@ source_dict = {
     'yawen': 'content',
     'lightnovelpub': 'chapter-container',
     'doctruyen14': 'content',
-    'truyenyy': 'inner_chap_content_1'
+    'truyenyy': 'inner_chap_content_1',    
+    'keleshuba' : 'nr1',
+    'uukanshu': 'TextContent',
     
 }
 #change key to set id value
