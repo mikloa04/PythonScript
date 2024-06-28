@@ -21,7 +21,8 @@ chapter = 0
 source_dict = {
     'foxaholic': 'reading-content', 
     'mtlreader': 'chapter-content', 
-    'ttv': 'box-chap'
+    'ttv': 'box-chap',
+    'xianqihaotianmi': 'panel-body content-body content-ext',
     
 }
 #change key to set class value
