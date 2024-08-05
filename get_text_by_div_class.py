@@ -1,6 +1,6 @@
 #Script để tải truyện từ các website truyen
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 1.0.0
+#Version: 1.0.2
 #Dung module selenium, pip install selenium, pip install selenium -U
 
 from bs4 import BeautifulSoup
@@ -14,15 +14,17 @@ import time
 import os
 import array as arr
 
-LinkFile = "link.txt"
-filenameTXT ="Ketqua.txt"
-filelog ="log.txt"
+LinkFile = "link2.txt"
+filenameTXT ='NL-lo-thuoc-tang-hinh-33.txt' #"Ketqua2.txt"
+filelog ="log2.txt"
 chapter = 0
 source_dict = {
     'foxaholic': 'reading-content', 
     'mtlreader': 'chapter-content', 
     'ttv': 'box-chap',
     'xianqihaotianmi': 'panel-body content-body content-ext',
+    'shuhaige': 'content',
+    'truyensex': 'ndtruyen',
     
 }
 #change key to set class value
@@ -31,13 +33,16 @@ _val = ''
 f = open(LinkFile, "r")
 #init Chrome webdriver --headless -disable logging
 options = webdriver.ChromeOptions()
+chrome_install = ChromeDriverManager().install()
+folder = os.path.dirname(chrome_install)
+chromedriver_path = os.path.join(folder, "chromedriver.exe")
 options.add_argument("headless")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_argument('log-level=3')
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+driver = webdriver.Chrome(service=ChromeService(chromedriver_path), options=options)
 driver.implicitly_wait(0.5)
 retry = 0
-for x in f:   
+for x in f:
     if "http" in x:
         bCheckLink=0
         StrippedContent=""
@@ -65,8 +70,8 @@ for x in f:
                 soup = BeautifulSoup(fp,"lxml")
                 try:        
                     #Luu tieu de  
-                    downloaded = soup.title.string
-                    StrippedContent= downloaded+"\n"                
+                    #downloaded = soup.title.string
+                    #StrippedContent= downloaded+"\n"                
                     
                     #Lay noi dung chuong
                     div= soup.find('div', class_=_val)
@@ -100,7 +105,7 @@ for x in f:
             os.remove(filenameHTML)
 
         #Tam dung mot chut    
-        SleepTime=random.randint(3, 7)
+        SleepTime=random.randint(1, 3)
         time.sleep(SleepTime)
 driver.quit()
 f.close()
