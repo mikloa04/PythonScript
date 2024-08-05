@@ -1,6 +1,6 @@
 #Script để tải truyện từ các website truyen
 #Script tải html từng chương truyện về, sau đó extract lấy text, ghi vào file Ketqua.txt
-#Version: 1.0.2
+#Version: 1.0.4
 #Dung module selenium, pip install selenium, pip install selenium -U
 
 from bs4 import BeautifulSoup
@@ -15,7 +15,7 @@ import os
 import array as arr
 
 LinkFile = "link.txt"
-filenameTXT ="Ketqua.txt"
+filenameTXT ="ta-muon-thua-thiet-thanh-giai-tri-cu-dau-510.txt" #"Ketqua.txt"
 filelog ="log.txt"
 chapter = 0
 source_dict = {
@@ -31,9 +31,11 @@ source_dict = {
     'yawen': 'content',
     'lightnovelpub': 'chapter-container',
     'doctruyen14': 'content',
-    'truyenyy': 'inner_chap_content_1',    
+    'truyenyy': 'inner_chap_content_1',
     'keleshuba' : 'nr1',
     'uukanshu': 'TextContent',
+    'bachngocsach': 'noi-dung',
+    'lightnovel' :'chapterContent',
     
 }
 #change key to set id value
@@ -42,10 +44,13 @@ _val = ''
 f = open(LinkFile, "r")
 #init Chrome webdriver --headless -disable logging
 options = webdriver.ChromeOptions()
+chrome_install = ChromeDriverManager().install()
+folder = os.path.dirname(chrome_install)
+chromedriver_path = os.path.join(folder, "chromedriver.exe")
 options.add_argument("headless")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_argument('log-level=3')
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+driver = webdriver.Chrome(service=ChromeService(chromedriver_path), options=options)
 driver.implicitly_wait(0.5)
 retry = 0
 for x in f:   
@@ -107,11 +112,11 @@ for x in f:
                 chapter+=1
                 retry = 0
                 print('Error Downloaded!' )
-        if(os.path.exists(filenameHTML)):
-            os.remove(filenameHTML)
+       # if(os.path.exists(filenameHTML)):
+       #     os.remove(filenameHTML)
 
         #Tam dung mot chut    
-        SleepTime=random.randint(3, 7)
+        SleepTime=random.randint(1, 5)
         time.sleep(SleepTime)
 driver.quit()
 f.close()
