@@ -22,7 +22,7 @@ driver = webdriver.Chrome(service=ChromeService(chromedriver_path), options=opti
 driver.implicitly_wait(0.5)
 
 # Open URL
-current_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdWYi2QXakJRK-fstX-T7r4-dNa1Cv3ZmZqo1B7KjNGgPu47A/viewform'
+current_URL = 'https://docs.google.com/forms/d/e/~/viewform'
 
  
 # Data
