@@ -15,9 +15,9 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory='https://truyenyy.vip/truyen/hokage-chi-uchiha-derin/chuong-'
-StartChapter=1599 #So chuong bat dau
-EndChapter=1812 #So chuong ket thuc
+strURLStory='https://truyenyy.vip/truyen/{ten-truyen}/chuong-'
+StartChapter = x #So chuong bat dau
+EndChapter = y #So chuong ket thuc
 x=StartChapter    
 filenameTXT ="hokage-chi-uchiha-derin-1812.txt"
 
