@@ -14,7 +14,7 @@ import array as arr
 
 
 LinkFile = "link_connect.txt"
-filenameTXT ="Ketqua_connect.txt"
+filenameTXT ="result_connect.txt"
 filelog ="log_connect.txt"
 chapter = 0
 f = open(LinkFile, "r")
