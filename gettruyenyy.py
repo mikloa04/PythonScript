@@ -19,7 +19,7 @@ strURLStory='https://truyenyy.vip/truyen/{ten-truyen}/chuong-'
 StartChapter = x #So chuong bat dau
 EndChapter = y #So chuong ket thuc
 x=StartChapter    
-filenameTXT ="hokage-chi-uchiha-derin-1812.txt"
+filenameTXT ="result_truyenyy.txt"
 
 while (x<= EndChapter):
     StrippedContent=""
