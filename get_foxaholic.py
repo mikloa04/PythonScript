@@ -14,7 +14,7 @@ import os
 import array as arr
 
 LinkFile = "link_foxalic.txt"
-filenameTXT ="Ketqua_foxalic.txt"
+filenameTXT ="result_foxalic.txt"
 chapter = 0
 f = open(LinkFile, "r")
 for x in f:   
@@ -30,25 +30,25 @@ for x in f:
             soup = BeautifulSoup(fp,"lxml")
             downloaded=''
             try:        
-                #Luu tieu de  
+                #Save Title
                 for title in soup.find_all('title'):
                    downloaded =  title.get_text()
                 StrippedContent="\n"+ downloaded+"\n"                
                 
-                #Lay noi dung chuong
+                #Extract Content
                 div= soup.find('div', class_='reading-content')
                 
-                #Loai bo tag p
+                #Remove tag p
                 for elem in div.find_all("p"):
                     elem.replace_with(elem.text + "\n")
                 _text = div.text
                   
-                #Luu Noi dung chuong
+                #Save Content
                 StrippedContent="\n"+StrippedContent+"\n"+_text+"\n"
                 bCheckLink=1
                 
             except:
-                print('Khong ton tai Chuong: '+str(downloaded))
+                print('Dont exists chapter: '+str(downloaded))
                 bCheckLink=0
         if bCheckLink==1:  
             with open(filenameTXT, 'a', encoding="utf-8") as handle:    
@@ -57,8 +57,8 @@ for x in f:
             os.remove(filenameHTML)
         print('Da tai ('+downloaded+')' )    
         chapter+=1             
-        #Tam dung mot chut    
+        #Wait 
         SleepTime=random.randint(5, 10)
         time.sleep(SleepTime)
 f.close()
-print('Hoan tat!')
+print('Done!')
