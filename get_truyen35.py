@@ -14,7 +14,7 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory='https://truyen35nb.com/[ten-truyen]/chuong-'
+strURLStory='https://truyen35.shop/[ten-truyen]/chuong-'
 StartChapter=X #So chuong bat dau
 EndChapter=Y #So chuong ket thuc
 x=StartChapter    
