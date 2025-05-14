@@ -19,7 +19,7 @@ chromedriver_path = os.path.join(folder, "chromedriver.exe")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_argument('log-level=3')
 driver = webdriver.Chrome(service=ChromeService(chromedriver_path), options=options)
-driver.implicitly_wait(0.5)
+driver.implicitly_wait(0.8)
 
 # Open URL
 current_URL = 'https://docs.google.com/forms/d/e/~/viewform'
