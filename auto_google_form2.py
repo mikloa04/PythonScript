@@ -20,11 +20,11 @@ driver = webdriver.Chrome(service=ChromeService(chromedriver_path), options=opti
 driver.implicitly_wait(0.5)
 
 # Open URL
-current_URL = 'https://forms.gle/4VcYwfgqCPH7D7w49'
+current_URL = 'https://forms.gle/...'
 
  
 # Data
-LinkFile = "list2.txt"
+LinkFile = "list.txt"
 f = open(LinkFile,  mode="r",encoding="utf-8")
 #datas = ['']
 
@@ -76,9 +76,6 @@ for data in f:
     SleepTime=random.randint(2,5)
     time.sleep(SleepTime)
  
-    # fill another response
-    #another_response = driver.find_element(By.LINK_TEXT, 'Submit another response')
-    #another_response.click()
 
 f.close()
 # close the window
