@@ -16,11 +16,11 @@ import os
 import array as arr
 
 #Duong dan den chuong truyen
-strURLStory='https://truyensex.vip/loan-luan-me-con/'
-StartChapter=1 #So chuong bat dau
-EndChapter=17 #So chuong ket thuc
+strURLStory='https://truyensex.vip/{ten-truyen}/'
+StartChapter=0 #So chuong bat dau
+EndChapter=0 #So chuong ket thuc
 x=StartChapter    
-filenameTXT ="LL-loan-luan-me-con-c17.txt"
+filenameTXT ="ket-qua.txt"
 
 while (x<= EndChapter):
     StrippedContent=""
